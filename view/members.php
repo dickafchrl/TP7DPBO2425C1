@@ -15,5 +15,4 @@
     </tr>
     <?php endforeach; ?>
 
-<!-- tess -->
 </table>
