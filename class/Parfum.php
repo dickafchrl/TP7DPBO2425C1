@@ -1,5 +1,5 @@
 <?php
-require_once 'vicara_parfum/config/db.php';
+require_once 'config/db.php';
 
 class Parfum {
     private $db;
