@@ -1,0 +1,2 @@
+## Desain ERD
+<img width="1224" height="519" alt="image" src="https://github.com/user-attachments/assets/3044bb1b-8158-4029-9d10-e1d34860b687" />
