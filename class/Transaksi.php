@@ -13,6 +13,20 @@ class Transaksi {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getAllTransaksiWithPelanggan() {
+        $stmt = $this->db->prepare("SELECT
+        t.id_transaksi,
+        t.tanggal_transaksi,
+        p.nama_pelanggan,
+        t.metode_pembayaran
+        FROM transaksi t
+        INNER JOIN pelanggan p ON t.id_pelanggan = p.id_pelanggan
+        ORDER BY t.id_transaksi DESC
+        ");
+        $stmt->execute();
+        return $stmt->fetchALL(PDO::FETCH_ASSOC);
+    }
+
     public function addTransaksi($id_pelanggan, $tanggal_transaksi, $total_harga, $metode_pembayaran) {
         $stmt = $this->db->prepare("INSERT INTO transaksi (id_pelanggan, tanggal_transaksi, total_harga, metode_pembayaran) VALUES (?, ?, ?, ?)");
         $stmt->execute([$id_pelanggan, $tanggal_transaksi, $total_harga, $metode_pembayaran]);

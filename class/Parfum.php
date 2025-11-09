@@ -13,6 +13,20 @@ class Parfum {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }   
 
+    public function getAllParfumWithCategory() {
+        $stmt = $this->db->query("SELECT 
+        p.id_parfum, 
+        p.nama_parfum, 
+        k.nama_kategori, 
+        p.ukuran, 
+        p.harga, 
+        p.stok 
+        FROM parfum p
+        INNER JOIN kategori k ON p.id_kategori = k.id_kategori
+        ORDER BY p.id_parfum DESC");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function getParfumById($id) {
         $stmt = $this->db->prepare("SELECT * FROM parfum WHERE id_parfum = ?");
         $stmt->execute([$id]);
@@ -20,8 +34,8 @@ class Parfum {
     }
 
     public function addParfum($nama_parfum, $id_kategori, $ukuran, $harga, $stok) {
-        $stmt = $this->db->prepare("INSERT INTO parfum (nama_parfum, id_kategori, ukuran, harga, stok) VALUES (?, ?, ?, ?, ?)");
-        $stmt->execute([$nama_parfum, $id_kategori, $ukuran, $harga]);
+        $stmt = $this->db->prepare("INSERT INTO parfum (nama_parfum, id_kategori, ukuran, harga, stok ) VALUES (?, ?, ?, ?, ?)");
+        $stmt->execute([$nama_parfum, $id_kategori, $ukuran, $harga, $stok]);
         return $this->db->lastInsertId();
     }
 
@@ -31,14 +45,9 @@ class Parfum {
         return $stmt->rowCount();
     }
 
-    public function updateStock($id, $stok) {
-        $stmt = $this->db->prepare("UPDATE parfum SET stok = ? WHERE id_parfum = ?");
-        return $stmt->execute([$stok, $id]);
-    }
-
     public function updateParfum($id, $nama_parfum, $id_kategori, $ukuran, $harga, $stok) {
         $stmt = $this->db->prepare("UPDATE parfum SET nama_parfum = ?, id_kategori = ?, ukuran = ?, harga = ?, stok = ? WHERE id_parfum = ?");
-        $stmt->execute([$nama_parfum, $id_kategori, $ukuran, $harga, $id]);
+        $stmt->execute([$nama_parfum, $id_kategori, $ukuran, $harga, $stok, $id]);
         return $stmt->rowCount();
     }
 }

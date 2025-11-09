@@ -8,8 +8,33 @@ class DetailTransaksi {
         $this->db = (new Database())->conn;
     }
 
+    
     public function getAllDetailTransaksi() {
         $stmt = $this->db->query("SELECT * FROM detail_transaksi");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    public function getDetailById($id) {
+        $stmt = $this->db->prepare("SELECT * FROM detail_transaksi WHERE id_detail = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    
+    public function getAllDetailTransaksiWithRelasi() {       
+        $stmt = $this->db->query("SELECT 
+            dt.id_detail,
+            t.tanggal_transaksi,
+            p.nama_pelanggan,
+            pf.nama_parfum,
+            pf.ukuran,
+            dt.jumlah,
+            dt.subtotal,
+            t.metode_pembayaran
+            FROM detail_transaksi dt
+            INNER JOIN transaksi t ON dt.id_transaksi = t.id_transaksi
+            INNER JOIN parfum pf ON dt.id_parfum = pf.id_parfum
+            INNER JOIN pelanggan p ON t.id_pelanggan = p.id_pelanggan
+            ORDER BY dt.id_detail DESC");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 

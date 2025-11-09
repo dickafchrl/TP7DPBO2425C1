@@ -34,9 +34,10 @@ $detailtransaksi = new DetailTransaksi();
     <nav class="navbar">
         <div class="logo"></div>
         <ul>
-            <li><a href="#">Data Parfum</a></li>
-            <li><a href="#">Data Pelanggan</a></li>
-            <li><a href="#">Data Transaksi</a></li>
+            <li><a href="?page=detail">Detail Data</a></li>
+            <li><a href="?page=parfum">Data Parfum</a></li>
+            <li><a href="?page=pelanggan">Data Pelanggan</a></li>
+            <li><a href="?page=transaksi">Data Kategori</a></li>
         </ul>
     </nav>
     
@@ -45,7 +46,8 @@ $detailtransaksi = new DetailTransaksi();
     <?php
         if (isset($_GET['page'])) {
             $page = $_GET['page'];
-            if ($page == 'parfum') include 'view/ParfumList.php';
+            if ($page == 'detail') include 'view/DetailTransaksiList.php';
+            elseif ($page == 'parfum') include 'view/ParfumList.php';
             elseif ($page == 'pelanggan') include 'view/PelangganList.php';
             elseif ($page == 'transaksi') include 'view/TransaksiList.php';
         }
