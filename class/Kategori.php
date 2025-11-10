@@ -13,6 +13,12 @@ class Kategori {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getKategoriById($id) {
+        $stmt = $this->db->prepare("SELECT * FROM kategori WHERE id_kategori = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function addKategori($nama_kategori, $deskripsi) {
         $stmt = $this->db->prepare("INSERT INTO kategori (nama_kategori, deskripsi) VALUES (?, ?)");
         $stmt->execute([$nama_kategori, $deskripsi]);
@@ -25,9 +31,9 @@ class Kategori {
         return $stmt->rowCount();
     }
 
-    public function updatePelanggan($id, $nama_kategori, $deskripsi) {
+    public function updateKategori($id, $nama_kategori, $deskripsi) {
         $stmt = $this->db->prepare("UPDATE kategori SET nama_kategori = ?, deskripsi = ? WHERE id_kategori = ?");
-        $stmt->execute([$nama_parfum, $id_kategori, $ukuran, $harga, $id]);
+        $stmt->execute([$nama_kategori, $deskripsi, $id]);
         return $stmt->rowCount();
     }
 }

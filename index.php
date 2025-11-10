@@ -37,7 +37,8 @@ $detailtransaksi = new DetailTransaksi();
             <li><a href="?page=detail">Detail Data</a></li>
             <li><a href="?page=parfum">Data Parfum</a></li>
             <li><a href="?page=pelanggan">Data Pelanggan</a></li>
-            <li><a href="?page=transaksi">Data Kategori</a></li>
+            <li><a href="?page=transaksi">Data Transaksi</a></li>
+            <li><a href="?page=kategori">Data Kategori</a></li>
         </ul>
     </nav>
     
@@ -50,6 +51,7 @@ $detailtransaksi = new DetailTransaksi();
             elseif ($page == 'parfum') include 'view/ParfumList.php';
             elseif ($page == 'pelanggan') include 'view/PelangganList.php';
             elseif ($page == 'transaksi') include 'view/TransaksiList.php';
+            elseif ($page == 'kategori') include 'view/KategoriList.php';
         }
     ?>
     

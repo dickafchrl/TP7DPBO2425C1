@@ -13,6 +13,12 @@ class Transaksi {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getTransaksiById($id) {
+        $stmt = $this->db->prepare("SELECT * FROM transaksi WHERE id_transaksi = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function getAllTransaksiWithPelanggan() {
         $stmt = $this->db->prepare("SELECT
         t.id_transaksi,

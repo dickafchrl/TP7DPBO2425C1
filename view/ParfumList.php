@@ -49,13 +49,22 @@
         <input type="text" name="nama_parfum" required>
         
         <label>ID kategori:</label>
-        <input type="number" name="id_kategori" required>
+        <select name="id_kategori" required>
+            <?php foreach($kategori->getAllKategori() as $k): ?>
+                <option value="<?= $k['id_kategori'] ?>">
+                    <?= $k['nama_kategori'] ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
         
-        <label>ukuran:</label>
+        <label>Ukuran:</label>
         <input type="text" name="ukuran" required>
         
-        <label>harga:</label>
+        <label>Harga:</label>
         <input type="number" name="harga" required>
+        
+        <label>Stok:</label>
+        <input type="number" name="stok" required>
         
         <button type="submit" name="add_parfum">Tambah</button>
         </form>
