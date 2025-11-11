@@ -1,3 +1,35 @@
+<!-- Logika -->
+    <?php
+        if (isset($_POST['add_pelanggan'])) {
+            $pelanggan->addpelanggan(
+                $_POST['nama_pelanggan'], 
+                $_POST['email'], 
+                $_POST['no_hp'],
+                $_POST['alamat']
+            );
+            header("Location: ?page=pelanggan");
+            exit;
+        }
+
+        if (isset($_GET['aksi']) && $_GET['aksi'] == 'hapus' && isset($_GET['id'])) {
+            $pelanggan->deletePelanggan($_GET['id']);
+            header("Location: ?page=pelanggan");
+            exit;
+        }
+
+        if (isset($_POST['update_pelanggan'])) {
+            $pelanggan->updatepelanggan(
+                $_POST['id_pelanggan'], 
+                $_POST['nama_pelanggan'], 
+                $_POST['email'], 
+                $_POST['no_hp'], 
+                $_POST['alamat']
+            );
+            header("Location: ?page=pelanggan");
+            exit;
+        }
+     ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -87,37 +119,5 @@
         <p>Pelanggan tidak ditemukan.</p>
     <?php endif; ?>
     <?php endif; ?>
-
-    <!-- Logika -->
-    <?php
-        if (isset($_POST['add_pelanggan'])) {
-            $pelanggan->addpelanggan(
-                $_POST['nama_pelanggan'], 
-                $_POST['email'], 
-                $_POST['no_hp'],
-                $_POST['alamat']
-            );
-            header("Location: ?page=pelanggan");
-            exit;
-        }
-
-        if (isset($_GET['aksi']) && $_GET['aksi'] == 'hapus' && isset($_GET['id'])) {
-            $pelanggan->deletePelanggan($_GET['id']);
-            header("Location: ?page=pelanggan");
-            exit;
-        }
-
-        if (isset($_POST['update_pelanggan'])) {
-            $pelanggan->updatepelanggan(
-                $_POST['id_pelanggan'], 
-                $_POST['nama_pelanggan'], 
-                $_POST['email'], 
-                $_POST['no_hp'], 
-                $_POST['alamat']
-            );
-            header("Location: ?page=pelanggan");
-            exit;
-        }
-     ?>
 </body>
 </html>

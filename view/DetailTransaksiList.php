@@ -1,3 +1,38 @@
+<!-- Logika -->
+    <?php
+        // Tambah
+        if (isset($_POST['add_detail'])) {
+            $detailtransaksi->addDetailTransaksi(
+                $_POST['id_transaksi'],
+                $_POST['id_parfum'],
+                $_POST['jumlah'],
+                $_POST['subtotal']
+            );
+            header("Location: ?page=detail");
+            exit;
+        }
+
+        // Hapus
+        if (isset($_GET['aksi']) && $_GET['aksi'] == 'hapus' && isset($_GET['id'])) {
+            $detailtransaksi->deleteDetailTransaksi($_GET['id']);
+            header("Location: ?page=detail");
+            exit;
+        }
+
+        // Update
+        if (isset($_POST['update_detail'])) {
+            $detailtransaksi->updateDetailTransaksi(
+                $_POST['id_detail'],
+                $_POST['id_transaksi'],
+                $_POST['id_parfum'],
+                $_POST['jumlah'],
+                $_POST['subtotal']
+            );
+            header("Location: ?page=detail");
+            exit;
+        }
+    ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -107,41 +142,5 @@
         <p>Detail transaksi tidak ditemukan.</p>
     <?php endif; ?>
     <?php endif; ?>
-
-
-    <!-- Logika -->
-    <?php
-        // Tambah
-        if (isset($_POST['add_detail'])) {
-            $detailtransaksi->addDetailTransaksi(
-                $_POST['id_transaksi'],
-                $_POST['id_parfum'],
-                $_POST['jumlah'],
-                $_POST['subtotal']
-            );
-            header("Location: ?page=detail");
-            exit;
-        }
-
-        // Hapus
-        if (isset($_GET['aksi']) && $_GET['aksi'] == 'hapus' && isset($_GET['id'])) {
-            $detailtransaksi->deleteDetailTransaksi($_GET['id']);
-            header("Location: ?page=detail");
-            exit;
-        }
-
-        // Update
-        if (isset($_POST['update_detail'])) {
-            $detailtransaksi->updateDetailTransaksi(
-                $_POST['id_detail'],
-                $_POST['id_transaksi'],
-                $_POST['id_parfum'],
-                $_POST['jumlah'],
-                $_POST['subtotal']
-            );
-            header("Location: ?page=detail");
-            exit;
-        }
-    ?>
 </body>
 </html>

@@ -1,3 +1,37 @@
+<!-- Logika -->
+     <?php
+        if (isset($_POST['add_parfum'])) {
+            $parfum->addParfum(
+                $_POST['nama_parfum'], 
+                $_POST['id_kategori'], 
+                $_POST['ukuran'], 
+                $_POST['harga'], 
+                $_POST['stok']
+            );
+            header("Location: ?page=parfum");
+            exit;
+        }
+
+        if (isset($_GET['aksi']) && $_GET['aksi'] == 'hapus' && isset($_GET['id'])) {
+            $parfum->deleteParfum($_GET['id']);
+            header("Location: ?page=pengguna");
+            exit;
+        }
+
+        if (isset($_POST['update_parfum'])) {
+            $parfum->updateParfum(
+                $_POST['id_parfum'],
+                $_POST['nama_parfum'], 
+                $_POST['id_kategori'], 
+                $_POST['ukuran'], 
+                $_POST['harga'], 
+                $_POST['stok']
+            );
+            header("Location: ?page=parfum");
+            exit;
+        }
+     ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -107,40 +141,5 @@
         <p>parfum tidak ditemukan.</p>
     <?php endif; ?>
     <?php endif; ?>
-
-
-    <!-- Logika -->
-     <?php
-        if (isset($_POST['add_parfum'])) {
-            $parfum->addParfum(
-                $_POST['nama_parfum'], 
-                $_POST['id_kategori'], 
-                $_POST['ukuran'], 
-                $_POST['harga'], 
-                $_POST['stok']
-            );
-            header("Location: ?page=parfum");
-            exit;
-        }
-
-        if (isset($_GET['aksi']) && $_GET['aksi'] == 'hapus' && isset($_GET['id'])) {
-            $parfum->deleteParfum($_GET['id']);
-            header("Location: ?page=pengguna");
-            exit;
-        }
-
-        if (isset($_POST['update_parfum'])) {
-            $parfum->updateParfum(
-                $_POST['id_parfum'],
-                $_POST['nama_parfum'], 
-                $_POST['id_kategori'], 
-                $_POST['ukuran'], 
-                $_POST['harga'], 
-                $_POST['stok']
-            );
-            header("Location: ?page=parfum");
-            exit;
-        }
-     ?>
 </body>
 </html>

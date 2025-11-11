@@ -1,3 +1,31 @@
+<!-- Logika -->
+    <?php
+        if (isset($_POST['add_kategori'])) {
+            $kategori->addKategori(
+                $_POST['nama_kategori'], 
+                $_POST['deskripsi']
+            );
+            header("Location: ?page=kategori");
+            exit;
+        }
+
+        if (isset($_GET['aksi']) && $_GET['aksi'] == 'hapus' && isset($_GET['id'])) {
+            $kategori->deleteKategori($_GET['id']);
+            header("Location: ?page=kategori");
+            exit;
+        }
+
+        if (isset($_POST['update_kategori'])) {
+            $kategori->updateKategori(
+                $_POST['id_kategori'], 
+                $_POST['nama_kategori'],
+                $_POST['deskripsi']
+            );
+            header("Location: ?page=kategori");
+            exit;
+        }
+     ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,33 +99,5 @@
         <p>Kategori tidak ditemukan.</p>
     <?php endif; ?>
     <?php endif; ?>
-
-    <!-- Logika -->
-    <?php
-        if (isset($_POST['add_kategori'])) {
-            $kategori->addKategori(
-                $_POST['nama_kategori'], 
-                $_POST['deskripsi']
-            );
-            header("Location: ?page=kategori");
-            exit;
-        }
-
-        if (isset($_GET['aksi']) && $_GET['aksi'] == 'hapus' && isset($_GET['id'])) {
-            $kategori->deleteKategori($_GET['id']);
-            header("Location: ?page=kategori");
-            exit;
-        }
-
-        if (isset($_POST['update_kategori'])) {
-            $kategori->updateKategori(
-                $_POST['id_kategori'], 
-                $_POST['nama_kategori'],
-                $_POST['deskripsi']
-            );
-            header("Location: ?page=kategori");
-            exit;
-        }
-     ?>
 </body>
 </html>
