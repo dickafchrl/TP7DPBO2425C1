@@ -52,3 +52,8 @@ Prgoram ini menggunakan 5 Entitas
 - Modularisasi melalui pemisahan class dan include view
 - Menggunakan PDO untuk perantara ke Database
 - Kode terpisah antara tampilan (view/) dan logika (class/)
+
+## Dokum
+https://github.com/user-attachments/assets/8b783e88-a642-4e2b-9abf-05d16ffa96ee
+
+
